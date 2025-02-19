@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gaming Development Club - Retro Edition</title>
+  <!-- Retro & Modern Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- AOS Animation Library for scroll effects -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@next/dist/aos.css" />
+  <style>
+    :root {
+      --primary-color: #ff0066; /* bright neon pink */
+      --secondary-color: #00ffcc; /* bright neon teal */
+      --dark-bg: #121212;
+      --light-bg: #1d1d1d;
+      --text-light: #fefefe;
+      --text-dark: #333333;
+      --pixel-border: 3px solid var(--primary-color);
+    }
+    
+    /* Base styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--light-bg);
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+    
+    /* Header with neon gradient and retro font */
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      color: var(--text-light);
+      text-align: center;
+      padding: 3rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header h1 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 2rem;
+      text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--secondary-color);
+      margin: 0;
+    }
+    
+    header p {
+      font-size: 1rem;
+      margin: 0.5rem 0 0;
+    }
+    
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Retro navigation */
+    nav {
+      background: var(--dark-bg);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: var(--pixel-border);
+    }
+    
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      padding: 0.8rem 1.5rem;
+      margin: 0 0.5rem;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.7rem;
+      position: relative;
+      transition: color 0.3s;
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--text-light);
+      transition: width 0.3s;
+    }
+    
+    nav a:hover::after {
+      width: 100%;
+    }
+    
+    /* Hero Section with retro background image and pixel effect overlay */
+    .hero-section {
+      text-align: center;
+      padding: 6rem 0;
+      background: url('https://source.unsplash.com/1600x900/?retro,arcade') no-repeat center/cover;
+      position: relative;
+    }
+    
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      image-rendering: pixelated;
+    }
+    
+    .hero-section .container {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero-section h1 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1.8rem;
+      text-shadow: 0 0 8px var(--primary-color);
+    }
+    
+    /* Retro buttons with pixel border */
+    .button {
+      display: inline-block;
+      background: var(--primary-color);
+      color: var(--text-light);
+      padding: 1rem 2.5rem;
+      border: var(--pixel-border);
+      font-family: 'Press Start 2P', cursive;
+      text-decoration: none;
+      font-size: 0.7rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      image-rendering: pixelated;
+    }
+    
+    .button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 10px var(--secondary-color);
+    }
+    
+    /* Game Jam Card with pixelated effects */
+    .game-jam-card {
+      background: var(--dark-bg);
+      border: var(--pixel-border);
+      border-radius: 0;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: transform 0.3s;
+      image-rendering: pixelated;
+    }
+    
+    .game-jam-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .game-jam-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .game-jam-date {
+      background: var(--secondary-color);
+      color: var(--text-light);
+      padding: 0.5rem 1rem;
+      border: var(--pixel-border);
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.6rem;
+    }
+    
+    /* Special Guest Section with retro styling */
+    #special-guest {
+      background: var(--light-bg);
+      padding: 4rem 0;
+      border-top: var(--pixel-border);
+      border-bottom: var(--pixel-border);
+    }
+    
+    #special-guest h2 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1.2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    #special-guest .guest-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    
+    #special-guest .guest-photo {
+      width: 250px;
+      height: 250px;
+      border: var(--pixel-border);
+      image-rendering: pixelated;
+    }
+    
+    #special-guest .guest-info {
+      flex: 1;
+      max-width: 500px;
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+    
+    /* Contact & Footer styles */
+    #contact {
+      padding: 3rem 0;
+      text-align: center;
+    }
+    
+    footer {
+      background: var(--dark-bg);
+      color: var(--text-light);
+      text-align: center;
+      padding: 2rem 0;
+      border-top: var(--pixel-border);
+    }
+    
+    .social-links a {
+      color: var(--text-light);
+      margin: 0 0.5rem;
+      font-size: 1.2rem;
+      transition: transform 0.3s;
+    }
+    
+    .social-links a:hover {
+      transform: scale(1.2);
+      color: var(--secondary-color);
+    }
+    
+    /* 8-bit blink effect for retro feel */
+    .blink {
+      animation: blinkText 1.2s step-start infinite;
+    }
+    
+    @keyframes blinkText {
+      50% { opacity: 0; }
+    }
+    
+    /* AOS animations override for retro (if needed) */
+    [data-aos] {
+      opacity: 0;
+      transition-property: opacity, transform;
+    }
+    
+    [data-aos].aos-animate {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+  <header data-aos="fade-down">
+    <div class="container">
+      <h1 class="blink">Gaming Dev Club</h1>
+      <p>Create. Collaborate. Compete.</p>
+    </div>
+  </header>
+  
+  <nav data-aos="fade-down" data-aos-duration="800">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#game-jam">Game Jam</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#special-guest">Special Guest</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  
+  <section class="hero-section" id="home" data-aos="fade-up" data-aos-duration="1000">
+    <div class="container">
+      <h1>Welcome to the Retro Gaming Dev Club</h1>
+      <p>Join our community of passionate retro game developers, pixel artists, and nostalgic creators.</p>
+      <a href="#game-jam" class="button">Join the Game Jam</a>
+    </div>
+  </section>
+  
+  <section id="about" data-aos="fade-up" data-aos-duration="1000">
+    <div class="container">
+      <h2 class="blink">About Our Club</h2>
+      <p>Founded in 2020, our club brings together retro game enthusiasts from all walks of life. We celebrate classic game design, pixel art, and the spirit of vintage gaming.</p>
+      <h3>What We Do:</h3>
+      <ul>
+        <li>Retro game jams & 8‑bit challenges</li>
+        <li>Workshops on pixel art & classic game design</li>
+        <li>Mentorship programs for budding retro developers</li>
+        <li>Exhibitions and showcase events</li>
+      </ul>
+      <h3>Join Our Community</h3>
+      <p>Whether you’re into classic arcade games or modern remakes with a retro twist, our club welcomes everyone!</p>
+      <a href="#" class="button">Become a Member</a>
+    </div>
+  </section>
+  
+  <!-- Special Guest Section -->
+  <section id="special-guest" data-aos="fade-up" data-aos-duration="1000">
+    <div class="container">
+      <h2>Special Guest: Nikhil Malankar</h2>
+      <div class="guest-content">
+        <img src="https://source.unsplash.com/250x250/?developer,retro" alt="Nikhil Malankar" class="guest-photo" />
+        <div class="guest-info">
+          <p>
+            Nikhil Malankar is a legendary game developer, entrepreneur, and mentor known for his pioneering work in retro-inspired game design. As CEO of GameEon Studios, his creative approach and passion for pixel art continue to inspire gamers and developers alike.
+          </p>
+          <p>
+            Join us as we welcome Nikhil to share his journey, insights, and the secrets behind his timeless designs.
+          </p>
+          <a href="https://www.nikhilmalankar.com/" class="button" target="_blank">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="contact" data-aos="fade-up" data-aos-duration="1000">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <p>Have questions or need more info? Reach out to us!</p>
+      <p>Email: <a href="mailto:info@gamingdevclub.com" style="color: var(--secondary-color);">info@gamingdevclub.com</a></p>
+      <p>Discord: GamingDevClub #general</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-discord"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+  </section>
+  
+  <footer data-aos="fade-up" data-aos-duration="1000">
+    <div class="container">
+      <p>&copy; 2025 Retro Gaming Dev Club. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <!-- AOS Script -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+</html>
